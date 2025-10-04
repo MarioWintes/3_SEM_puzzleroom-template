@@ -83,7 +83,7 @@ public class CommandLoad implements Command {
         // Initialize the game board with the loaded fields
         gameBoard.initialize(fields);
 
-        // If we loaded the file successfuly, automatically execute a show
+        // If we loaded the file successfully, automatically execute a show
         // command to show the player the new field
         CommandShow showCommand = new CommandShow();
         showCommand.execute(gameBoard);
