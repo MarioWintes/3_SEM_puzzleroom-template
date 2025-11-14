@@ -30,6 +30,7 @@ public class FieldIce extends BaseField{
         setPlayerPositionToField();
         nextField.enterField(direction);
         return true;
+
     }
 
     @Override
