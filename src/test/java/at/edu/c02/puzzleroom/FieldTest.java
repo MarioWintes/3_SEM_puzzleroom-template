@@ -99,3 +99,46 @@ public class FieldTest {
         assertEquals(2,player.getStepCount());
     }
 }
+    public void oneWayFieldNegative() throws Exception {
+        GameBoard gameBoard = new GameBoardImpl();
+        // Finish is reached when moving twice to the right
+        new CommandLoad(new String[]{"src/test/resources/simpleOneWay.maze"}).execute(gameBoard);
+        Player player = gameBoard.getPlayer();
+
+        // Player should start at 0 steps
+        assertEquals(0, player.getStepCount());
+
+        
+        player.moveRight();
+
+
+        boolean success1 = player.moveUp();
+        assertFalse(success1);
+
+        boolean success2 = player.moveLeft();
+        assertFalse(success2);
+
+        boolean success3 = player.moveDown();
+        assertFalse(success3);
+
+
+    }
+
+    @Test
+    public void oneWayFieldPositive() throws Exception {
+        GameBoard gameBoard = new GameBoardImpl();
+        // Finish is reached when moving twice to the right
+        new CommandLoad(new String[]{"src/test/resources/simpleOneWay.maze"}).execute(gameBoard);
+        Player player = gameBoard.getPlayer();
+
+        // Player should start at 0 steps
+        assertEquals(0, player.getStepCount());
+
+        boolean success1 = player.moveRight();
+        assertTrue(success1);
+
+        boolean success2 = player.moveRight();
+        assertTrue(success2);
+    }
+    
+    }
