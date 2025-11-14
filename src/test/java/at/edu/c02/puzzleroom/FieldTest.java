@@ -76,6 +76,7 @@ public class FieldTest {
         // Game should be finished after moving right twice
         assertTrue(gameBoard.isFinished());
     }
+
     @Test
     public void iceField() throws Exception {
         GameBoard gameBoard = new GameBoardImpl();
@@ -87,6 +88,7 @@ public class FieldTest {
 
         assertTrue(gameBoard.isFinished());
     }
+
     @Test
     public void iceFieldStepCount() throws Exception {
         GameBoard gameBoard = new GameBoardImpl();
@@ -96,9 +98,9 @@ public class FieldTest {
         player.moveRight();
         player.moveRight();
 
-        assertEquals(2,player.getStepCount());
+        assertEquals(2, player.getStepCount());
     }
-}
+
     @Test
     public void oneWayFieldNegative() throws Exception {
         GameBoard gameBoard = new GameBoardImpl();
@@ -141,5 +143,4 @@ public class FieldTest {
         boolean success2 = player.moveRight();
         assertTrue(success2);
     }
-
-    }
+}
