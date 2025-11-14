@@ -31,6 +31,7 @@ public class FieldFactory {
             case ' ' -> new FieldPath(gameBoard, fieldName, row, col);
             case '#' -> new FieldWall(gameBoard, fieldName, row, col);
             case 'o' -> new FieldStart(gameBoard, fieldName, row, col);
+            case '@' -> new FieldIce(gameBoard, fieldName, row, col);
             case 'x' -> new FieldFinish(gameBoard, fieldName, row, col);
             case '<','>', 'v', '^' -> new FieldOneWay(gameBoard, fieldName, row, col);
 
