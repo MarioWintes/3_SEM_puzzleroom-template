@@ -1,6 +1,7 @@
 package at.edu.c02.puzzleroom;
 
 import at.edu.c02.puzzleroom.commands.CommandLoad;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -74,5 +75,27 @@ public class FieldTest {
         player.moveRight();
         // Game should be finished after moving right twice
         assertTrue(gameBoard.isFinished());
+    }
+    @Test
+    public void iceField() throws Exception {
+        GameBoard gameBoard = new GameBoardImpl();
+        new CommandLoad(new String[]{"src/test/resources/simple_ice.maze"}).execute(gameBoard);
+        Player player = gameBoard.getPlayer();
+
+        player.moveRight();
+        player.moveRight();
+
+        assertTrue(gameBoard.isFinished());
+    }
+    @Test
+    public void iceFieldStepCount() throws Exception {
+        GameBoard gameBoard = new GameBoardImpl();
+        new CommandLoad(new String[]{"src/test/resources/simple_ice.maze"}).execute(gameBoard);
+        Player player = gameBoard.getPlayer();
+
+        player.moveRight();
+        player.moveRight();
+
+        assertEquals(2,player.getStepCount());
     }
 }
