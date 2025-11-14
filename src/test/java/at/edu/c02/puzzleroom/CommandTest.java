@@ -1,5 +1,6 @@
 package at.edu.c02.puzzleroom;
 
+import at.edu.c02.puzzleroom.commands.CommandFastMove;
 import at.edu.c02.puzzleroom.commands.CommandLoad;
 import at.edu.c02.puzzleroom.commands.CommandMove;
 import at.edu.c02.puzzleroom.exceptions.PuzzleRoomInvalidArgumentsException;
@@ -39,5 +40,27 @@ public class CommandTest {
 
         // This should throw a PuzzleRoomInvalidArgumentsException
         new CommandMove(new String[]{"invalid"}).execute(gameBoard);
+    }
+
+    @Test(expected = PuzzleRoomInvalidArgumentsException.class)
+    public void fastMovePositiveTestPositive() throws Exception {
+        GameBoard gameBoard = new GameBoardImpl();
+        new CommandLoad(new String[]{"src/test/resources/simple.maze"}).execute(gameBoard);
+        Player player = gameBoard.getPlayer();
+        new CommandFastMove(new String[]{"r r"}).execute(gameBoard);
+
+        // Player should now be at 2 step and at column 3 (because they moved right twice)
+        assertEquals(2, player.getStepCount());
+        assertEquals(1, player.getRow());
+        assertEquals(3, player.getCol());
+    }
+
+    @Test(expected = PuzzleRoomInvalidArgumentsException.class)
+    public void fastMovePositiveTestNegative() throws Exception {
+        GameBoard gameBoard = new GameBoardImpl();
+        new CommandLoad(new String[]{"src/test/resources/simple.maze"}).execute(gameBoard);
+
+        // This should throw a PuzzleRoomInvalidArgumentsException
+        new CommandFastMove(new String[]{"xyz"}).execute(gameBoard);
     }
 }
